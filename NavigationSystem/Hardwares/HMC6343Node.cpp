@@ -242,6 +242,7 @@ void HMC6343Node::HMC6343ThreadFunc(ActiveNode* nodePtr)
 				headingIndex++;
 			}
 			// Post the data to the message bus
+			Logger::info("Heading received %f", heading);
 			MessagePtr msg = std::make_unique<CompassDataMsg>(int(Utility::meanOfAngles(headingData) + 0.5), pitch, roll);
 			node->m_MsgBus.sendMessage(std::move(msg));
 		}
